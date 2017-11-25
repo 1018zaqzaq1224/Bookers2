@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
-
-  def top
+  before_action :authenticate_user!, except: [:home, :about]
+  def home
   end
-  
+  def about
+  end
+
   def new
     @book = Book.new
   end
@@ -22,6 +24,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book = Book.new
   end
 
   def edit
@@ -40,12 +43,11 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_path, notice: 'Book was successfully destroyed.' }
     end
-    
   end
 
   private
   def book_params
-    params.require(:book).permit(:title, :body, :image)
+    params.require(:book).permit(:title, :body, :profile_image)
   end
 
 end

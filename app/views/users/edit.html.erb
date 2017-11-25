@@ -1,0 +1,17 @@
+<div class="body">
+	<div class="container">
+		<p id="notice"></p>
+		<h2> User info</h2>
+		<%= form_for(@user) do |f| %>
+			<h4> Name</h4>
+			<%= f.text_field :string %>
+			<h4> Image</h4>
+			<%= f.attachment_field :image%>
+			<h4> Introduction</h4>
+			<%= f.text_area :text %>
+
+			<%= f.submit 'Update User' %>
+		<% end %>
+	</div>
+</div>
+
